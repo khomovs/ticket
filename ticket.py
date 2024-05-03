@@ -1,15 +1,17 @@
-from math import comb
-def count_lucky_tickets():
-    total_lucky_tickets = 0
-    # Перебираем все возможные суммы для первых трех цифр
-    for sum_first_half in range(0, 28):
-        # Количество способов получить сумму sum_first_half с тремя цифрами
-        ways_to_get_sum = comb(sum_first_half + 2, 2)
-        # Количество счастливых билетов для текущей суммы
-        lucky_tickets_for_sum = ways_to_get_sum ** 2
-        # Добавляем к общему количеству счастливых билетов
-        total_lucky_tickets += lucky_tickets_for_sum
-    return total_lucky_tickets
+nachalnaya_tsifra = int(input("Введите произвольную цифру (от 0 до 9): "))
 
-# Вычисление и вывод количества счастливых билетов
-print("Количество счастливых билетов:", count_lucky_tickets())
+schotchik = 0
+
+for i in range(nachalnaya_tsifra * 100000, (nachalnaya_tsifra + 1) * 100000):
+
+    bilet = str(i)
+    pervaya_polovina = bilet[:3]
+    vtoraya_polovina = bilet[3:]
+
+    summa_pervoy_poloviny = sum(int(digit) for digit in pervaya_polovina)
+    summa_vtoroy_poloviny = sum(int(digit) for digit in vtoraya_polovina)
+
+    if summa_pervoy_poloviny == summa_vtoroy_poloviny:
+        schotchik += 1
+
+print("Количество счастливых билетов:", schotchik)y_tickets())
